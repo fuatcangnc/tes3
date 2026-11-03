@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "cta": "Get in touch",
+  "hero": {
+    "eyebrow": "Welcome",
+    "title": "We help your business grow",
+    "text": "A small team with big experience. We plan, build and support the projects that move your business forward.",
+    "primary": "Get in touch",
+    "secondary": "Our services"
+  },
+  "features": [
+    {
+      "title": "Experienced team",
+      "text": "Years of hands-on work in many industries."
+    },
+    {
+      "title": "Clear process",
+      "text": "You always know what happens next and what it costs."
+    },
+    {
+      "title": "Long-term support",
+      "text": "We stay with you after launch."
+    }
+  ],
+  "about": {
+    "title": "About us",
+    "intro": "We are an independent company that puts people and quality first.",
+    "body": "Our team combines planning, design and engineering under one roof. We listen first, then build solutions that fit your goals and your budget."
+  },
+  "services": {
+    "title": "Services",
+    "intro": "Everything you need, from the first idea to everyday operations.",
+    "more": "Learn more"
+  },
+  "blog": {
+    "title": "Blog",
+    "intro": "News, tips and stories from our team.",
+    "readMore": "Read more"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Have a question or a project in mind? Write to us and we will reply within one business day.",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message"
+    }
+  },
+  "footer": {
+    "tagline": "Planning, building and supporting projects that move businesses forward.",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has moved."
+  }
+}

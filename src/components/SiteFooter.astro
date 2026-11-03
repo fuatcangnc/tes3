@@ -1,0 +1,29 @@
+---
+import { href, settings, siteText } from '@/lib/i18n'
+
+interface Props {
+  locale: string
+}
+
+const { locale } = Astro.props
+const t = await siteText(locale)
+const s = await settings()
+---
+
+<footer class="mt-24 border-t border-border bg-neutral-950 text-neutral-300">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3">
+    <div>
+      <p class="text-lg font-bold text-white"><bdi>{s.brand}</bdi></p>
+      <p class="mt-3 text-sm leading-relaxed">{t.footer.tagline}</p>
+    </div>
+    <nav class="grid content-start gap-2 text-sm">
+      {[[t.nav.about, '/about/'], [t.nav.services, '/services/'], [t.nav.blog, '/blog/'], [t.nav.contact, '/contact/']].map(([label, path]) => <a href={href(locale, path)} class="hover:text-white">{label}</a>)}
+    </nav>
+    <address class="grid content-start gap-2 text-sm not-italic">
+      <a href={`tel:${s.phone.replace(/[^+\d]/g, '')}`} class="hover:text-white" dir="ltr">{s.phone}</a>
+      <a href={`mailto:${s.email}`} class="hover:text-white">{s.email}</a>
+      <span>{s.address}</span>
+    </address>
+  </div>
+  <p class="border-t border-white/10 py-5 text-center text-xs text-neutral-500">© {new Date().getFullYear()} <bdi>{s.brand}</bdi>. {t.footer.rights}</p>
+</footer>

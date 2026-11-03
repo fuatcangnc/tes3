@@ -1,0 +1,12 @@
+{
+	"version": 1,
+	"sites": [
+		{
+			"key": "root",
+			"name": "Acme Co.",
+			"media": "public",
+			"publishing": "review",
+			"collections": ["site", "settings", "services", "posts"]
+		}
+	]
+}

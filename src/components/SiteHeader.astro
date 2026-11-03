@@ -1,0 +1,49 @@
+---
+import { Menu } from '@lucide/astro'
+import { Button } from '@/ui/button'
+import LanguageSwitcher from '@/components/i18n/LanguageSwitcher.astro'
+import { href, settings, siteText } from '@/lib/i18n'
+
+interface Props {
+  locale: string
+  translated?: string[]
+}
+
+const { locale, translated } = Astro.props
+const t = await siteText(locale)
+const { brand } = await settings()
+const links = [
+  [t.nav.home, '/'],
+  [t.nav.about, '/about/'],
+  [t.nav.services, '/services/'],
+  [t.nav.blog, '/blog/'],
+  [t.nav.contact, '/contact/'],
+].map(([label, path]) => ({ label, url: href(locale, path) }))
+const current = (url: string) => Astro.url.pathname === url || (url !== href(locale) && Astro.url.pathname.startsWith(url))
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5">
+    <a href={href(locale)} class="flex items-center gap-2 text-lg font-bold tracking-tight">
+      <img src="/favicon.svg" alt="" width="28" height="28" />
+      <bdi>{brand}</bdi>
+    </a>
+    <nav aria-label={t.nav.home} class="ms-auto hidden items-center gap-1 md:flex">
+      {
+        links.map((l) => (
+          <a href={l.url} aria-current={current(l.url) ? 'page' : undefined} class="rounded-md px-3 py-2 text-sm font-medium text-muted hover:text-foreground aria-[current=page]:text-primary">
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+    <LanguageSwitcher translated={translated} class="ms-auto text-sm font-medium md:ms-0" />
+    <Button as="a" href={href(locale, '/contact/')} size="sm" class="hidden md:inline-flex">{t.cta}</Button>
+    <details class="relative md:hidden">
+      <summary class="flex size-9 cursor-pointer list-none items-center justify-center rounded-md border border-border" aria-label="Menu"><Menu class="size-5" /></summary>
+      <nav class="absolute end-0 top-11 grid min-w-48 gap-1 rounded-md border border-border bg-background p-2 shadow-lg">
+        {links.map((l) => <a href={l.url} class="rounded px-3 py-2 text-sm hover:bg-black/5">{l.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>

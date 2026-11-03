@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { localePaths, locales, siteText } from '@/lib/i18n'
+
+export const getStaticPaths = localePaths
+
+const { locale } = Astro.props
+const t = await siteText(locale)
+---
+
+<Layout locale={locale} title={t.about.title} description={t.about.intro} translated={await locales()}>
+  <article class="mx-auto max-w-3xl px-5 pt-20">
+    <h1 class="text-4xl font-bold tracking-tight md:text-5xl">{t.about.title}</h1>
+    <p class="mt-6 text-lg leading-relaxed">{t.about.intro}</p>
+    <div class="prose-content mt-6">{t.about.body.split(/\n\n+/).map((p) => <p>{p}</p>)}</div>
+  </article>
+</Layout>

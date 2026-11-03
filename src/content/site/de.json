@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Leistungen",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "cta": "Kontakt aufnehmen",
+  "hero": {
+    "eyebrow": "Willkommen",
+    "title": "Wir helfen Ihrem Unternehmen zu wachsen",
+    "text": "Ein kleines Team mit viel Erfahrung. Wir planen, entwickeln und betreuen die Projekte, die Ihr Unternehmen voranbringen.",
+    "primary": "Kontakt aufnehmen",
+    "secondary": "Unsere Leistungen"
+  },
+  "features": [
+    {
+      "title": "Erfahrenes Team",
+      "text": "Jahrelange Praxis in vielen Branchen."
+    },
+    {
+      "title": "Klarer Ablauf",
+      "text": "Sie wissen immer, was als Nächstes passiert und was es kostet."
+    },
+    {
+      "title": "Langfristige Betreuung",
+      "text": "Auch nach dem Start bleiben wir an Ihrer Seite."
+    }
+  ],
+  "about": {
+    "title": "Über uns",
+    "intro": "Wir sind ein unabhängiges Unternehmen, bei dem Menschen und Qualität an erster Stelle stehen.",
+    "body": "Unser Team vereint Planung, Design und Technik unter einem Dach. Wir hören zuerst zu und entwickeln dann Lösungen, die zu Ihren Zielen und Ihrem Budget passen."
+  },
+  "services": {
+    "title": "Leistungen",
+    "intro": "Alles, was Sie brauchen – von der ersten Idee bis zum Tagesgeschäft.",
+    "more": "Mehr erfahren"
+  },
+  "blog": {
+    "title": "Blog",
+    "intro": "Neuigkeiten, Tipps und Geschichten aus unserem Team.",
+    "readMore": "Weiterlesen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "intro": "Haben Sie eine Frage oder ein Projekt im Kopf? Schreiben Sie uns – wir antworten innerhalb eines Werktags.",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "address": "Adresse",
+    "form": {
+      "name": "Ihr Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "send": "Nachricht senden"
+    }
+  },
+  "footer": {
+    "tagline": "Wir planen, entwickeln und betreuen Projekte, die Unternehmen voranbringen.",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Die gesuchte Seite existiert nicht oder wurde verschoben."
+  }
+}

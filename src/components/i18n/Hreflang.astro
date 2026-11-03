@@ -1,0 +1,26 @@
+---
+/**
+ * hreflang alternates (added by WuppyCMS): every language this page is translated into,
+ * itself included, plus x-default for the default language. Put it in <head>.
+ * Pages built from content collections can pass `translated` (locale paths that exist).
+ */
+import { languages } from "./languages";
+
+interface Props {
+  translated?: string[];
+}
+
+// hreflang needs absolute URLs, so it waits for `site` in astro.config.
+const site = Astro.site;
+const list = site ? languages(Astro.url, Astro.props.translated).filter((l) => l.translated) : [];
+const fallback = list.find((l) => l.default);
+---
+
+{
+  list.length > 1 && (
+    <>
+      {list.map((l) => <link rel="alternate" hreflang={l.tag} href={new URL(l.url, site).href} />)}
+      {fallback && <link rel="alternate" hreflang="x-default" href={new URL(fallback.url, site).href} />}
+    </>
+  )
+}

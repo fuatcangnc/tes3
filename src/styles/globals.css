@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "bejamas/tailwind.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --muted: #525252;
+  --line: #e5e5e5;
+  --primary: #dd641e;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #fff;
+  --color-muted: var(--muted);
+  --color-border: var(--line);
+  --color-ring: var(--primary);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { background: var(--background); color: var(--foreground); }
+  ::selection { background: var(--primary); color: #fff; }
+  .prose-content h2 { margin: 2rem 0 0.75rem; font-size: 1.5rem; font-weight: 700; }
+  .prose-content p, .prose-content ul { margin: 0 0 1rem; line-height: 1.8; color: var(--muted); }
+  .prose-content ul { padding-inline-start: 1.25rem; list-style: disc; }
+  .prose-content a { color: var(--primary); text-decoration: underline; }
+}
+
+.language-switcher ul { inset-inline-end: 0; right: auto; }

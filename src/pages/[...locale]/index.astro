@@ -1,0 +1,76 @@
+---
+import { ArrowRight, Check } from '@lucide/astro'
+import Layout from '@/layouts/Layout.astro'
+import { Button } from '@/ui/button'
+import { DEFAULT_LOCALE, href, localePaths, locales, localized, prefixDefault, settings, siteText } from '@/lib/i18n'
+
+export const getStaticPaths = async () => [
+  ...(await localePaths()),
+  // With the default locale in the path, `/` only sends visitors on to it.
+  ...(prefixDefault ? [{ params: { locale: undefined }, props: { locale: DEFAULT_LOCALE, redirect: true } }] : []),
+]
+
+const { locale, redirect } = Astro.props as { locale: string; redirect?: boolean }
+if (redirect) return Astro.redirect(href(locale))
+const t = await siteText(locale)
+const { brand } = await settings()
+const services = (await localized('services', locale)).sort((a, b) => a.data.order - b.data.order)
+const posts = (await localized('posts', locale)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()).slice(0, 3)
+const date = new Intl.DateTimeFormat(locale, { dateStyle: 'medium' })
+---
+
+<Layout locale={locale} title={brand} description={t.hero.text} translated={await locales()}>
+  <section class="mx-auto max-w-6xl px-5 pt-20 pb-16 md:pt-28">
+    <p class="text-sm font-semibold tracking-wide text-primary uppercase">{t.hero.eyebrow}</p>
+    <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance md:text-6xl">{t.hero.title}</h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{t.hero.text}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <Button as="a" href={href(locale, '/contact/')} size="lg">{t.hero.primary} <ArrowRight class="rtl:rotate-180" /></Button>
+      <Button as="a" href={href(locale, '/services/')} size="lg" variant="outline">{t.hero.secondary}</Button>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-6 px-5 md:grid-cols-3">
+    {
+      t.features.map((f) => (
+        <div class="rounded-xl border border-border p-6">
+          <Check class="size-6 text-primary" />
+          <h2 class="mt-4 text-lg font-semibold">{f.title}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{f.text}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 pt-24">
+    <h2 class="text-3xl font-bold tracking-tight">{t.services.title}</h2>
+    <p class="mt-3 max-w-2xl text-muted">{t.services.intro}</p>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {
+        services.map((s) => (
+          <a href={href(locale, `/services/${s.slug}/`)} class="group rounded-xl bg-neutral-100 p-6 hover:bg-neutral-200">
+            <h3 class="text-lg font-semibold group-hover:text-primary">{s.data.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{s.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="mx-auto max-w-6xl px-5 pt-24">
+        <h2 class="text-3xl font-bold tracking-tight">{t.blog.title}</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          {posts.map((p) => (
+            <a href={href(locale, `/blog/${p.slug}/`)} class="group">
+              <time datetime={p.data.publishedAt.toISOString()} class="text-xs text-muted">{date.format(p.data.publishedAt)}</time>
+              <h3 class="mt-1 text-lg font-semibold group-hover:text-primary">{p.data.title}</h3>
+              <p class="mt-2 text-sm text-muted">{p.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Layout>

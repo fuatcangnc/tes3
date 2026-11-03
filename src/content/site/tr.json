@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "services": "Hizmetler",
+    "blog": "Blog",
+    "contact": "İletişim"
+  },
+  "cta": "Bize ulaşın",
+  "hero": {
+    "eyebrow": "Hoş geldiniz",
+    "title": "İşletmenizin büyümesine yardımcı oluyoruz",
+    "text": "Küçük ama deneyimli bir ekibiz. İşinizi ileri taşıyan projeleri planlıyor, hayata geçiriyor ve destekliyoruz.",
+    "primary": "Bize ulaşın",
+    "secondary": "Hizmetlerimiz"
+  },
+  "features": [
+    {
+      "title": "Deneyimli ekip",
+      "text": "Pek çok sektörde yıllara dayanan saha tecrübesi."
+    },
+    {
+      "title": "Net süreç",
+      "text": "Sırada ne olduğunu ve maliyetini her zaman bilirsiniz."
+    },
+    {
+      "title": "Uzun vadeli destek",
+      "text": "Yayına aldıktan sonra da yanınızdayız."
+    }
+  ],
+  "about": {
+    "title": "Hakkımızda",
+    "intro": "İnsanı ve kaliteyi ön planda tutan bağımsız bir şirketiz.",
+    "body": "Ekibimiz planlama, tasarım ve mühendisliği tek çatı altında topluyor. Önce sizi dinliyor, ardından hedeflerinize ve bütçenize uygun çözümler üretiyoruz."
+  },
+  "services": {
+    "title": "Hizmetler",
+    "intro": "İlk fikirden günlük işleyişe kadar ihtiyacınız olan her şey.",
+    "more": "Ayrıntılar"
+  },
+  "blog": {
+    "title": "Blog",
+    "intro": "Ekibimizden haberler, ipuçları ve hikâyeler.",
+    "readMore": "Devamını oku"
+  },
+  "contact": {
+    "title": "İletişim",
+    "intro": "Bir sorunuz ya da aklınızda bir proje mi var? Bize yazın, bir iş günü içinde yanıt verelim.",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "address": "Adres",
+    "form": {
+      "name": "Adınız",
+      "email": "E-posta",
+      "message": "Mesajınız",
+      "send": "Mesaj gönder"
+    }
+  },
+  "footer": {
+    "tagline": "İşletmeleri ileri taşıyan projeleri planlıyor, hayata geçiriyor ve destekliyoruz.",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "text": "Aradığınız sayfa yok ya da taşınmış."
+  }
+}

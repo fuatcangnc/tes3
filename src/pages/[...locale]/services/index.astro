@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { href, localePaths, locales, localized, siteText } from '@/lib/i18n'
+
+export const getStaticPaths = localePaths
+
+const { locale } = Astro.props
+const t = await siteText(locale)
+const services = (await localized('services', locale)).sort((a, b) => a.data.order - b.data.order)
+---
+
+<Layout locale={locale} title={t.services.title} description={t.services.intro} translated={await locales()}>
+  <section class="mx-auto max-w-6xl px-5 pt-20">
+    <h1 class="text-4xl font-bold tracking-tight md:text-5xl">{t.services.title}</h1>
+    <p class="mt-6 max-w-2xl text-lg text-muted">{t.services.intro}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        services.map((s) => (
+          <a href={href(locale, `/services/${s.slug}/`)} class="group rounded-xl border border-border p-6 hover:border-primary">
+            <h2 class="text-xl font-semibold group-hover:text-primary">{s.data.title}</h2>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{s.data.description}</p>
+            <span class="mt-4 inline-block text-sm font-medium text-primary">{t.services.more}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

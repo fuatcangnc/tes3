@@ -1,0 +1,53 @@
+---
+/**
+ * Language switcher (added by WuppyCMS): the current page in every language from astro.config.
+ * Untranslated pages go to Astro's i18n fallback. Style it with `class`.
+ */
+import { languages } from "./languages";
+
+interface Props {
+  translated?: string[];
+  class?: string;
+}
+
+const list = languages(Astro.url, Astro.props.translated);
+const current = list.find((l) => l.current);
+// Each language in its own words (Deutsch, Français…).
+const name = (code: string) => {
+  try {
+    const n = new Intl.DisplayNames([code], { type: "language" }).of(code) ?? code;
+    return n.charAt(0).toLocaleUpperCase(code) + n.slice(1);
+  } catch {
+    return code;
+  }
+};
+---
+
+{
+  current && (
+    <details class:list={["language-switcher", Astro.props.class]}>
+      <summary aria-label={`Language: ${name(current.tag)}`}>{current.path.toUpperCase()}</summary>
+      <ul>
+        {list.map((l) => (
+          <li>
+            <a href={l.url} hreflang={l.tag} lang={l.tag} aria-current={l.current ? "true" : undefined} data-untranslated={l.translated ? undefined : ""}>
+              {name(l.tag)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}
+
+<style>
+  .language-switcher { position: relative; display: inline-flex; align-items: center; }
+  .language-switcher summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 0.25rem; font: inherit; }
+  .language-switcher summary::-webkit-details-marker { display: none; }
+  .language-switcher summary::after { content: "▾"; font-size: 0.75em; }
+  .language-switcher ul { position: absolute; top: 100%; right: 0; z-index: 60; min-width: 10rem; margin: 0.25rem 0 0; padding: 0.25rem; list-style: none; background: Canvas; color: CanvasText; border: 1px solid color-mix(in srgb, CanvasText 15%, transparent); border-radius: 0.375rem; box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); }
+  .language-switcher a { display: block; padding: 0.375rem 0.625rem; border-radius: 0.25rem; color: inherit; text-decoration: none; white-space: nowrap; }
+  .language-switcher a:hover, .language-switcher a:focus-visible { background: color-mix(in srgb, CanvasText 8%, transparent); }
+  .language-switcher a[aria-current] { font-weight: 700; }
+  .language-switcher a[data-untranslated] { opacity: 0.6; }
+</style>

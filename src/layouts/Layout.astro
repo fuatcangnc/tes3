@@ -1,0 +1,50 @@
+---
+import '@/styles/globals.css'
+import { Font } from 'astro:assets'
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+import WuppycmsBridge from '@/components/WuppycmsBridge.astro'
+import Hreflang from '@/components/i18n/Hreflang.astro'
+import { tag } from '@/components/i18n/languages'
+import { dir, settings } from '@/lib/i18n'
+
+interface Props {
+  locale: string
+  title: string
+  description?: string
+  /** Locales this page exists in (language switcher and hreflang). */
+  translated?: string[]
+}
+
+const { locale, title, description, translated } = Astro.props
+const { brand } = await settings()
+const fullTitle = title === brand ? brand : `${title} | ${brand}`
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin)
+---
+
+<!doctype html>
+<html lang={tag(locale)} dir={dir(locale)}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Font cssVariable="--font-sans" preload />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={brand} />
+    <meta property="og:locale" content={tag(locale).replace('-', '_')} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Hreflang translated={translated} />
+  </head>
+  <body class="flex min-h-screen flex-col font-sans antialiased">
+    <SiteHeader locale={locale} translated={translated} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+    <WuppycmsBridge />
+  </body>
+</html>
